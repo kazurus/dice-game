@@ -1,7 +1,14 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <v-app>
+      <v-content>
+        <v-container fluid>
+          <img src="./assets/logo.png">
+          <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+        </v-container>
+      </v-content>
+      <v-footer app></v-footer>
+    </v-app>
   </div>
 </template>
 
@@ -16,14 +23,3 @@ export default Vue.extend({
   },
 });
 </script>
-
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
