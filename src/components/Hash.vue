@@ -14,8 +14,11 @@ import Vue from 'vue';
 
 export default Vue.extend({
   name: 'Hash',
-  data: () => ({
-    hash: 'thiswillbehash'
-  }),
+  props: {
+    hash: {
+      type: String,
+      required: true,
+    },
+  },
 });
 </script>
