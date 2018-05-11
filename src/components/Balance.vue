@@ -33,7 +33,11 @@ export default Vue.extend({
       type: Number,
       default: BalanceData.DEFAULT,
       validator(value: number): boolean {
-        return !isNaN(value);
+        if (value < 0) {
+          throw new Error('[Balance]: Invalid prop');
+        }
+
+        return !isNaN(value) && value >= 0;
       },
     },
   },

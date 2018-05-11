@@ -28,7 +28,7 @@
 <script lang="ts">
 import Vue from 'vue';
 
-import { BetResult, BetType, NumRange } from './types';
+import { BetResult, BetType, NumRange, BalanceData } from './types';
 
 import { MathUtil } from './mixins';
 import Balance from './components/Balance.vue';
@@ -45,7 +45,7 @@ export default Vue.extend({
     Result,
   },
   data: () => ({
-    balance: 0,
+    balance: BalanceData.DEFAULT,
     secretNumber: 0,
     userNumber: 0,
     userBet: 0,

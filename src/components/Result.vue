@@ -22,6 +22,13 @@ export default Vue.extend({
     result: {
       type: Number,
       required: true,
+      validator(value: number): boolean {
+        if (value !== 0 && !value || typeof value !== 'number') {
+          throw new Error('[Result]: Invalid prop');
+        }
+
+        return !isNaN(value);
+      },
     },
   },
   computed: {

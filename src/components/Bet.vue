@@ -5,8 +5,8 @@
     </v-btn>
     <div v-if="isNumberValid" class="mt-2">
       <p>number {{ comparisonSymbol }} {{ userNumber }}</p>
-      <p>chance: {{ chance }}%</p>
-      <p>payout: {{ payout.toFixed(2) }}x</p>
+      <p class="chance">chance: {{ chance }}%</p>
+      <p class="payout">payout: {{ payout.toFixed(2) }}x</p>
     </div>
   </div>
 </template>
