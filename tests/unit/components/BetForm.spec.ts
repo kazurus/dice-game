@@ -18,7 +18,7 @@ describe('BetForm.vue', () => {
       propsData: { userNumber, balance, bet, isGameReady },
     });
 
-    expect(wrapper.vm.isFormValid).toBeTruthy();
+    expect((wrapper.vm as any).isFormValid).toBeTruthy();
 
     const input = wrapper.find('input[aria-label="Bet Amount"]');
 
@@ -26,7 +26,7 @@ describe('BetForm.vue', () => {
     wrapper.setProps({ bet: balance + 1 });
     input.trigger('input');
 
-    expect(wrapper.vm.isFormValid).toBeFalsy();
+    expect((wrapper.vm as any).isFormValid).toBeFalsy();
   });
 
   it('should be valid when user add credit to balance', () => {
@@ -35,7 +35,7 @@ describe('BetForm.vue', () => {
       propsData: { userNumber, balance, bet, isGameReady },
     });
 
-    expect(wrapper.vm.isFormValid).toBeTruthy();
+    expect((wrapper.vm as any).isFormValid).toBeTruthy();
 
     const input = wrapper.find('input[aria-label="Bet Amount"]');
 
@@ -43,28 +43,30 @@ describe('BetForm.vue', () => {
     wrapper.setProps({ bet: balance + 1 });
     input.trigger('input');
 
-    expect(wrapper.vm.isFormValid).toBeFalsy();
+    expect((wrapper.vm as any).isFormValid).toBeFalsy();
 
-    wrapper.setProps({ balance: input.element.value + 1 });
+    wrapper.setProps({
+      balance: (input.element as HTMLInputElement).value + 1,
+    });
 
-    expect(wrapper.vm.isFormValid).toBeTruthy();
+    expect((wrapper.vm as any).isFormValid).toBeTruthy();
   });
 
   it('should be invalid when user input wrong number', () => {
-    const wrapperExtra = mount(localVue.extend(BetForm), {
+    const wrapper = mount(localVue.extend(BetForm), {
       localVue,
       propsData: { userNumber, balance, bet, isGameReady },
     });
 
-    expect(wrapperExtra.vm.isFormValid).toBeTruthy();
+    expect((wrapper.vm as any).isFormValid).toBeTruthy();
 
     const wrongNumber = NumRange.MAX + 1;
-    const input = wrapperExtra.find('input[aria-label="Number"]');
+    const input = wrapper.find('input[aria-label="Number"]');
 
     // input.element.value = wrongNumber;
-    wrapperExtra.setProps({ userNumber: wrongNumber });
+    wrapper.setProps({ userNumber: wrongNumber });
     input.trigger('input');
 
-    expect(wrapperExtra.vm.isFormValid).toBeFalsy();
+    expect((wrapper.vm as any).isFormValid).toBeFalsy();
   });
 });

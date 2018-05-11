@@ -16,7 +16,7 @@ describe('Bet.vue', () => {
   });
 
   it('should calculate right chance', () => {
-    expect(wrapper.vm.chance).toEqual(100);
+    expect((wrapper.vm as any).chance).toEqual(100);
   });
 
   it('should render right chance', () => {
@@ -24,7 +24,7 @@ describe('Bet.vue', () => {
   });
 
   it('should calculate right payout', () => {
-    expect(wrapper.vm.payout).toEqual(1);
+    expect((wrapper.vm as any).payout).toEqual(1);
   });
 
   it('should render right payout', () => {

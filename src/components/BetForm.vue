@@ -47,6 +47,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
+// @ts-ignore
 import mixinDeep from 'mixin-deep';
 import validate from 'validate.js';
 import constraints from '@/validation';

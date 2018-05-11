@@ -16,7 +16,7 @@ import Vue from 'vue';
 // Vue.use(Vuetify);
 Vue.config.productionTip = false;
 /* tslint:disable */
-Vue.config.isUnknownElement = () => {};
+(Vue.config as any).isUnknownElement = () => {};
 Vue.config.warnHandler = () => {};
 /* tslint:enable */
 Vue.config.devtools = false;
