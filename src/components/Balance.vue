@@ -24,12 +24,14 @@
 <script lang="ts">
 import Vue from 'vue';
 
+import { BalanceData } from '@/types';
+
 export default Vue.extend({
   name: 'Balance',
   props: {
     balance: {
       type: Number,
-      default: 100,
+      default: BalanceData.DEFAULT,
       validator(value: number): boolean {
         return !isNaN(value);
       },
@@ -42,7 +44,7 @@ export default Vue.extend({
   },
   methods: {
     addCredit() {
-      this.$emit('update:balance', 100);
+      this.$emit('update:balance', BalanceData.ADD);
     },
   },
 });

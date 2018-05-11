@@ -6,9 +6,10 @@
           <v-layout row wrap>
             <v-flex xs4 offset-xs2>
               <BetForm
-                :user-number.sync="userNumber"
+                :balance="balance"
                 :bet.sync="userBet"
                 :is-game-ready="isGameReady"
+                :user-number.sync="userNumber"
                 @update:bet:data="handleBet" />
             </v-flex>
             <v-flex xs4>
@@ -76,6 +77,7 @@ export default Vue.extend({
       const roundCredit = this.mathRound(credit, 2);
       const newBalance = this.mathRound(balance + roundCredit, 2);
 
+      this.userNumber = 0;
       this.result = roundCredit;
       this.balance = newBalance;
       this.secretNumber = this.randomNum();

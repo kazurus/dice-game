@@ -42,22 +42,27 @@ export default Vue.extend({
       return this.type === BetType.HI ? '>=' : '<=';
     },
     chance(): number {
-      const { userNumber } = this;
+      const { userNumber, type, mathRound } = this;
+      const { MIN, MAX } = NumRange;
 
-      const high = (NumRange.MAX + 1 - userNumber) / NumRange.MAX;
-      const low = (userNumber + 1 - NumRange.MIN) / NumRange.MAX;
-      const chance = this.type === BetType.HI ? high : low;
+      const high = (MAX + 1 - userNumber) / MAX;
+      const low = (userNumber + 1 - MIN) / MAX;
+      const chance = type === BetType.HI ? high : low;
 
-      return this.mathRound(chance * 100, 2);
+      return mathRound(chance * 100, 2);
     },
     payout(): number {
-      const contraChance = this.mathRound(100 - this.chance, 2);
-      const ratio = contraChance / this.chance;
+      const { chance, mathRound, mathTrunc } = this;
+      const contraChance = mathRound(100 - chance, 2);
+      const ratio = contraChance / chance;
 
-      return this.mathTrunc(ratio + 1, 2);
+      return mathTrunc(ratio + 1, 2);
     },
     isNumberValid(): boolean {
-      return this.userNumber >= 1 && this.userNumber <= 100;
+      const { userNumber } = this;
+      const { MIN, MAX } = NumRange;
+      
+      return userNumber >= MIN && userNumber <= MAX;
     },
   },
   methods: {
